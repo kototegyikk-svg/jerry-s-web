@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Society_master_terminal // hanthit_nway</title>
+    <title>fsociety_master_terminal // hanthit_nway</title>
     <style>
-        /* 🕶️ Mr. Robot Deep Unix Terminal Core Theme */
+        /* 🕶️ Mr. Robot Deep Unix Terminal Core Theme (All Scanlines & TV Effects Removed) */
         body {
             background-color: #050505; color: #00ff66; 
             font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0;
@@ -13,12 +13,6 @@
             box-sizing: border-box;
         }
         *, *:before, *:after { box-sizing: inherit; }
-        
-        body::before {
-            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
-            z-index: 999; background-size: 100% 3px, 6px 100%; pointer-events: none;
-        }
         
         header { margin-top: 15px; text-align: center; width: 95%; max-width: 1200px; border-bottom: 2px dashed #00ff66; padding-bottom: 10px; }
         h1 { font-size: calc(1.2rem + 0.5vw); margin: 0; font-weight: bold; letter-spacing: 2px; color: #00ff66; text-shadow: 0 0 5px #00ff66; }
@@ -98,22 +92,22 @@
 <body onload="initSystem()">
 
     <header>
-        <h1>fsociety_core_os v10.0.0</h1>
-        <div class="subtitle">root@hanthit_nway_Myanmar_Developer:~# _</div>
+        <h1>fsociety_core_os v13.0.0</h1>
+        <div class="subtitle">root@hanthit_nway_network_suite:~# _</div>
     </header>
 
     <div class="auth-status-bar" id="authStatusBar">
         <span>[STATUS] => SECURE_ANONYMOUS_GUEST</span>
         <div>
-            <span class="auth-link" onclick="openAuthModal('register')">[+] register_</span>
-            <span class="auth-link" onclick="openAuthModal('login')">[//] login_</span>
+            <span class="auth-link" onclick="openAuthModal('register')">[+] register_node</span>
+            <span class="auth-link" onclick="openAuthModal('login')">[//] login_session</span>
         </div>
     </div>
 
     <div class="cyber-navigation">
-        <div class="nav-tab active-tab" id="tab-tracker" onclick="switchModule('tracker')">/Home</div>
-        <div class="nav-tab" id="tab-audio" onclick="switchModule('audio')"> /youtube_</div>
-        <div class="nav-tab" id="tab-account" onclick="switchModule('account')"> ./view_users <span id="bellWrapper"></span></div>
+        <div class="nav-tab active-tab" id="tab-tracker" onclick="switchModule('tracker')">cat /nodes/identity_tracker</div>
+        <div class="nav-tab" id="tab-audio" onclick="switchModule('audio')">cat /nodes/youtube_striker</div>
+        <div class="nav-tab" id="tab-account" onclick="switchModule('account')">sudo ./view_users <span id="bellWrapper"></span></div>
         <div class="nav-tab" id="tab-admin" onclick="switchModule('admin')" style="display:none; border-color:#ff0055; color:#ff0055;">👑 MASTER_ROOT_ADMIN_PANEL</div>
     </div>
 
@@ -125,7 +119,7 @@
 
         <div class="tracker-grid">
             <div>
-                <div class="section-title">> Search </div>
+                <div class="section-title">> TARGET_IDENTITY_PROBE_SHELL</div>
                 <br>
                 <div class="tracker-wrapper">
                     <div class="search-group">
@@ -244,29 +238,31 @@
         let isAudioPlaying = false;
 
         function initSystem() {
-            // Initialize Core Users DB in local matrix
-            if (!localStorage.getItem("FSO_USERS_DB")) {
+            let usersDB = localStorage.getItem("FSO_USERS_DB");
+            
+            if (!usersDB) {
                 const initialDB = {
                     "FSO-9999": { id: "FSO-9999", fullName: "HanThitNway", phone: "09892454482", pass: "amm258069", user: "HanThit", friends: ["FSO-4321"], requests: ["FSO-1111"] },
                     "FSO-4321": { id: "FSO-4321", fullName: "Elliot Alderson", phone: "09998887776", pass: "fsociety", user: "mr_robot", friends: ["FSO-9999"], requests: [] },
                     "FSO-1111": { id: "FSO-1111", fullName: "Darlene Alderson", phone: "09112233445", pass: "darkarmy", user: "darlene_hack", friends: [], requests: [] }
                 };
                 localStorage.setItem("FSO_USERS_DB", JSON.stringify(initialDB));
+                usersDB = initialDB;
+            } else {
+                usersDB = JSON.parse(usersDB);
+                if (!usersDB["FSO-9999"]) {
+                    usersDB["FSO-9999"] = { id: "FSO-9999", fullName: "HanThitNway", phone: "09892454482", pass: "amm258069", user: "HanThit", friends: [], requests: [] };
+                    localStorage.setItem("FSO_USERS_DB", JSON.stringify(usersDB));
+                }
             }
+
             if (!localStorage.getItem("FSO_CHAT_LOGS")) {
                 localStorage.setItem("FSO_CHAT_LOGS", JSON.stringify({}));
             }
 
-            // 🛑 [FIXED] REMOVED FORCE AUTO-LOGIN TO FSO-9999
-            // စက်အသစ် သို့မဟုတ် ဖုန်းအသစ်ကနေ Link ပွင့်လာရင် Guest အဖြစ်ပဲ စဝင်ပါမယ်။
             const activeSessionId = localStorage.getItem("FSO_ACTIVE_SESSION_UID");
-            if (activeSessionId) {
-                const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
-                if (usersDB[activeSessionId]) {
-                    bindUserSessionUI(usersDB[activeSessionId]);
-                } else {
-                    renderGuestUI();
-                }
+            if (activeSessionId && usersDB[activeSessionId]) {
+                bindUserSessionUI(usersDB[activeSessionId]);
             } else {
                 renderGuestUI();
             }
@@ -280,7 +276,6 @@
             document.getElementById('accountBoxDetails').innerHTML = `<p style="color:#ff0055; font-size:11px; margin:0;">[CRITICAL_WARN] ANONYMOUS_SESSION_NOT_BOUND. PLEASE LOG IN.</p>`;
         }
 
-        /* 🔍 Core Tracker Target Probing Engine */
         function executeTargetSearch() {
             if(!currentUserObj) { alert("ERR_UNAUTHORIZED: Authenticated session required."); return; }
             const queryId = document.getElementById('targetIdSearchInput').value.trim().toUpperCase();
@@ -416,7 +411,6 @@
             loadChatHistoryLogs();
         }
 
-        /* 🎵 LIVE YOUTUBE ENGINE */
         async function triggerYoutubeSearch() {
             const query = document.getElementById('ytSearchQuery').value.trim();
             const grid = document.getElementById('youtubeResultsGrid');
@@ -483,7 +477,6 @@
             }
         }
 
-        /* SPA Layout Switches */
         function switchModule(moduleName) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
             document.querySelectorAll('.app-module').forEach(m => m.classList.remove('active-module'));
@@ -559,7 +552,6 @@
             }
         }
 
-        /* Access Authentication Core Layer */
         function openAuthModal(mode) { currentMode = mode; document.getElementById('authModal').style.display = 'flex'; updateModalUI(); }
         function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
         function toggleAuthMode() { currentMode = (currentMode === 'register') ? 'login' : 'register'; updateModalUI(); }
