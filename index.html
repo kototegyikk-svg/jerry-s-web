@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>society_master_Os// hanthit_nway</title>
+    <style>
+        /* 🕶️ Mr. Robot Deep Unix Terminal Core Theme */
+        body {
+            background-color: #050505; color: #00ff66; 
+            font-family: 'Courier New', Courier, monospace; margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after { box-sizing: inherit; }
+        
+        body::before {
+            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
+            z-index: 999; background-size: 100% 3px, 6px 100%; pointer-events: none;
+        }
+        
+        header { margin-top: 15px; text-align: center; width: 95%; max-width: 1200px; border-bottom: 2px dashed #00ff66; padding-bottom: 10px; }
+        h1 { font-size: calc(1.2rem + 0.5vw); margin: 0; font-weight: bold; letter-spacing: 2px; color: #00ff66; text-shadow: 0 0 5px #00ff66; }
+        .subtitle { font-size: 10px; color: #888; margin-top: 5px; word-break: break-all; }
+        
+        .auth-status-bar { width: 95%; max-width: 1200px; margin: 10px 0; padding: 5px 0; font-size: 11px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; gap: 10px; }
+        .auth-status-bar > div { display: flex; flex-wrap: wrap; gap: 5px; }
+        .hacker-username { color: #ff0055; font-weight: bold; text-shadow: 0 0 5px #ff0055; }
+        .auth-link { color: #00ff66; cursor: pointer; text-decoration: underline; }
+        
+        /* 🎛️ Cross-Platform Navigation Tab Layout */
+        .cyber-navigation { display: flex; width: 95%; max-width: 1200px; margin: 10px 0; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .nav-tab { flex: 1; min-width: 130px; text-align: center; padding: 10px 8px; font-size: 11px; font-weight: bold; color: #00ff66; cursor: pointer; border: 1px solid #00ff66; background: transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        @media (max-width: 480px) { .nav-tab { min-width: 45%; font-size: 10px; padding: 8px 4px; } }
+        .nav-tab.active-tab { color: #050505; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        
+        /* Notification bell badge */
+        .bell-badge { display: inline-block; background: #ff0055; color: #000; font-size: 9px; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-left: 3px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        .app-module { display: none; width: 95%; max-width: 1200px; flex-direction: column; margin-bottom: 20px; }
+        .app-module.active-module { display: flex; }
+        
+        .news-headline-panel { width: 100%; padding: 10px; background: #111; border-left: 4px solid #ffaa00; margin-bottom: 15px; }
+        .headline-tag { color: #ffaa00; font-size: 10px; font-weight: bold; display: block; }
+        .headline-text { font-size: 12px; color: #ccc; word-break: break-word; }
+
+        /* 🔍 Responsive Fluid Grid Engine */
+        .tracker-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 15px; width: 100%; }
+        @media(max-width: 768px) { .tracker-grid { grid-template-columns: 1fr; } }
+        
+        .tracker-wrapper, .friends-list-panel { background: #000; border: 1px solid #ff0055; padding: 15px; box-shadow: 0 0 15px rgba(255,0,85,0.1); width: 100%; }
+        .search-group { display: flex; border: 1px solid #ff0055; background: #050505; margin-bottom: 15px; width: 100%; }
+        .tracker-input { flex: 1; padding: 10px; background: transparent; border: none; color: #fff; outline: none; font-family: 'Courier New', monospace; font-size: 12px; min-width: 50px; }
+        .tracker-btn { padding: 0 15px; background: #ff0055; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; font-size: 12px; white-space: nowrap; }
+        .target-node-card { background: #111; border: 1px dashed #00ff66; padding: 12px; display: none; margin-bottom: 15px; }
+
+        /* Peer Node Layout links */
+        .friend-node-item { padding: 10px; border: 1px solid #222; margin-bottom: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 12px; gap: 10px; }
+        .friend-node-item:hover { border-color: #00ff66; background: rgba(0, 255, 102, 0.05); }
+        .active-friend-node { border-color: #00ff66; background: rgba(0, 255, 102, 0.1); }
+
+        /* 💬 DM Embedded Chat Architecture */
+        .dm-chat-window { background: #000; border: 1px solid #00ff66; display: none; flex-direction: column; height: 300px; margin-top: 15px; width: 100%; }
+        .chat-messages { flex: 1; padding: 12px; overflow-y: auto; font-size: 11px; display: flex; flex-direction: column; gap: 8px; background: #020202; }
+        .chat-input-area { display: flex; border-top: 1px solid #00ff66; width: 100%; }
+
+        /* 🎵 Responsive YouTube Striker Styles Matrix */
+        .video-search-shell { display: flex; border: 1px solid #00ff66; background: #111; margin-bottom: 15px; width: 100%; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; width: 100%; }
+        @media (max-width: 400px) { .video-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+        .video-item-card { background: #000; border: 1px solid #222; padding: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; width: 100%; }
+        .video-item-card:hover { border-color: #00ff66; background: rgba(0, 255, 102, 0.02); }
+        .video-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid #222; }
+        .video-title { font-size: 10px; font-weight: bold; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 28px; line-height: 14px; }
+        
+        /* Fluid Aspect-Ratio Responsive Video Player Box Container */
+        .player-container { width: 100%; aspect-ratio: 16/9; max-height: 500px; background: #000; border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; position: relative; }
+        .player-container iframe { width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; }
+        
+        /* 👑 Master Admin Panel Layout */
+        .admin-wrapper { width: 100%; background: #000; border: 1px solid #ff0055; padding: 15px; box-sizing: border-box; box-shadow: 0 0 20px rgba(255,0,85,0.15); }
+        .admin-table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; min-width: 600px; background: #020202; }
+        .admin-table th, .admin-table td { padding: 10px; text-align: left; border: 1px solid #222; white-space: nowrap; }
+        .admin-table th { background: rgba(255, 0, 85, 0.15); color: #ff0055; border-bottom: 2px solid #ff0055; }
+        .nuke-btn { background: #ff0055; color: #000; border: none; font-size: 10px; padding: 4px 8px; cursor: pointer; font-family: 'Courier New', monospace; font-weight: bold; }
+        .nuke-btn:hover { background: #fff; color: #ff0055; }
+
+        /* Authentication Popups System Modal CSS */
+        .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.97); justify-content: center; align-items: center; z-index: 1000; padding: 10px; }
+        .modal-content { background-color: #000; border: 1px solid #ff0055; padding: 20px; width: 100%; max-width: 380px; position: relative; }
+        .modal-content input { width: 100%; padding: 10px; margin: 8px 0; background: #111; border: 1px solid #333; color: #00ff66; box-sizing: border-box; outline: none; font-family: 'Courier New', monospace; font-size: 12px; }
+        .modal-btn { width: 100%; padding: 10px; background: #00ff66; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; font-size: 12px; }
+        .close-x { position: absolute; top: 10px; right: 10px; background: transparent; border: 1px solid #ff0055; color: #ff0055; cursor: pointer; padding: 2px 5px; font-size: 10px; }
+        .section-title { width: 100%; text-align: left; font-size: 12px; font-weight: bold; color: #ff0055; letter-spacing: 1px; }
+        .info-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dotted #222; font-size: 11px; gap: 10px; }
+        .info-row span { word-break: break-all; }
+    </style>
+</head>
+<body onload="initSystem()">
+
+    <header>
+        <h1>Society_core_os v9.0.0</h1>
+        <div class="subtitle">root@Hanthit_nway_Myanmar_Developer:~# _</div>
+    </header>
+
+    <div class="auth-status-bar" id="authStatusBar">
+        <span>[STATUS] => SECURE_GUEST</span>
+        <div>
+            <span class="auth-link" onclick="openAuthModal('register')">[+] register</span>
+            <span class="auth-link" onclick="openAuthModal('login')">[//] login</span>
+        </div>
+    </div>
+
+    <div class="cyber-navigation">
+        <div class="nav-tab active-tab" id="tab-tracker" onclick="switchModule('tracker')">/Home_</div>
+        <div class="nav-tab" id="tab-audio" onclick="switchModule('audio')">/youtube_</div>
+        <div class="nav-tab" id="tab-account" onclick="switchModule('account')">./view_users <span id="bellWrapper"></span></div>
+        <div class="nav-tab" id="tab-admin" onclick="switchModule('admin')" style="display:none; border-color:#ff0055; color:#ff0055;"> MASTER_ROOT_ADMIN_PANEL</div>
+    </div>
+
+    <div class="app-module active-module" id="module-tracker">
+        <div class="news-headline-panel">
+            <span class="headline-tag" id="audioTickerTag">[!] SYSTEM_ALERTS_LOG // PERSISTENT</span>
+            <span class="headline-text" id="headlineTicker">System fully operational. Cache states initialized from stable disk storage buffer.</span>
+        </div>
+
+        <div class="tracker-grid">
+            <div>
+                <div class="section-title">> Search </div>
+                <br>
+                <div class="tracker-wrapper">
+                    <div class="search-group">
+                        <span style="padding:10px; color:#ff0055; font-weight:bold; font-size:12px;">probe:~$</span>
+                        <input type="text" id="targetIdSearchInput" class="tracker-input" placeholder="Target User ID (FSO-XXXX)...">
+                        <button class="tracker-btn" onclick="executeTargetSearch()">PROBE</button>
+                    </div>
+
+                    <div class="target-node-card" id="targetResultCard">
+                        <div class="info-row"><span>ACCOUNT_NAME:</span><span id="targetResName" style="color:#fff; font-weight:bold;">-</span></div>
+                        <div class="info-row"><span>FULL_NAME:</span><span id="targetResFullName" style="color:#fff;">-</span></div>
+                        <div class="info-row"><span>NODE_STATUS:</span><span style="color:#00ff66; font-weight:bold;">● ONLINE</span></div>
+                        <br>
+                        <button class="tracker-btn" id="addFriendActionBtn" style="background:#00ff66; width:100%;">[+] ADD_FRIEND_NODE</button>
+                    </div>
+                </div>
+
+                <div class="dm-chat-window" id="secureDMChatWindow">
+                    <div style="background:#00ff66; color:#000; padding:8px; font-size:10px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
+                        <span id="chatTargetHeaderLabel">SECURE_TUNNEL_LOGS //</span>
+                        <span style="cursor:pointer;" onclick="closeChatTunnel()">[KILL_STAGE]</span>
+                    </div>
+                    <div class="chat-messages" id="dmChatMessagesBox"></div>
+                    <div class="chat-input-area">
+                        <span style="padding:10px; color:#00ff66; font-weight:bold; font-size:11px;">./:~$</span>
+                        <input type="text" id="dmInputMessage" class="tracker-input" placeholder="Transmit crypt packets..." onkeypress="if(event.key === 'Enter') transmitMessagePacket()">
+                        <button class="tracker-btn" onclick="transmitMessagePacket()">XMIT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-title">> ESTABLISHED_FRIEND_NODES</div>
+                <br>
+                <div class="friends-list-panel" id="syncedFriendsDisplayPanel" style="min-height:150px;">
+                    <div style="font-size:11px; color:#444; text-align:center; padding-top:30px;">No synced companion peer nodes configured in stack buffer.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-module" id="module-audio">
+        <div class="section-title">> ENTER YOUTUBE SEARCH </div>
+        <br>
+        <div class="video-search-shell">
+            <span style="padding:10px; color:#00ff66; font-weight:bold; font-size:12px;">yt@search:~$</span>
+            <input type="text" id="ytSearchQuery" class="tracker-input" placeholder="Type music title, video name, artist..." onkeypress="if(event.key === 'Enter') triggerYoutubeSearch()">
+            <button class="tracker-btn" style="background:#00ff66; color:#000;" onclick="triggerYoutubeSearch()">SEARCH</button>
+        </div>
+        
+        <div id="ytStatusMessage" style="font-size:11px; color:#ffaa00; margin-bottom:15px; display:none;">Executing search ...</div>
+        
+        <div class="video-grid" id="youtubeResultsGrid"></div>
+        <div class="section-title">> LIVE_DETACHED_PLAYER_MATRIX</div>
+        <br>
+        <div class="player-container">
+            <div id="playerPlaceholderText" style="font-size:11px; color:#444; position:absolute;">[!] NO STREAMS ACTIVE</div>
+            <div id="videoIframeTarget" style="width:100%; height:100%;"></div>
+        </div>
+    </div>
+
+    <div class="app-module" id="module-account">
+        <div class="section-title">> TARGET_ACCOUNT_IDENTITY_CREDENTIALS</div>
+        <br>
+        <div class="tracker-wrapper" style="margin-bottom:25px;" id="accountBoxDetails">
+            <p style="color:#ff0055; font-size:11px; margin:0;">[CRITICAL_WARN] ANONYMOUS_SESSION_NOT_BOUND. PLEASE LOG IN.</p>
+        </div>
+    </div>
+
+    <div class="app-module" id="module-admin">
+        <div class="section-title" style="color:#ff0055;">> CENTRAL_MASTER_IDENTITY_OVERRIDE_DASHBOARD</div>
+        <br>
+        <div class="admin-wrapper">
+            <div style="font-size:11px; color:#aaa; margin-bottom:10px;">// SYSTEM_REGISTRY_DATABASE_DUMP & USER TERMINAL</div>
+            <div class="admin-table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>USER_ID</th>
+                            <th>ACCOUNT_NAME (USER)</th>
+                            <th>FULL_NAME</th>
+                            <th>PHONE_NUMBER</th>
+                            <th>CRYPT_KEY (PASS)</th>
+                            <th>DESTRUCTION_STRIKE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="masterAdminUserTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <button class="close-x" onclick="closeAuthModal()">ESC</button>
+            <h3 id="modalTitle" style="font-size:12px; color:#ff0055; margin-top:0;"># REQUEST_SECURITY_CLEARANCE_LOGIN</h3>
+            <div id="registerFields" style="display:none;">
+                <input type="text" id="regFullName" placeholder="Enter Full Name">
+                <input type="text" id="regPhone" placeholder="Enter Phone Number">
+            </div>
+            <input type="text" id="authUsername" placeholder="Enter Account Name / Username">
+            <input type="password" id="authPassword" placeholder="Enter Access Password / Crypt Key">
+            <br><br>
+            <button class="modal-btn" onclick="processAuth()">EXECUTE_PAYLOAD</button>
+            <p id="switchAuthText" style="font-size:11px; margin-top:15px; cursor:pointer; color:#00ff66; text-decoration:underline;" onclick="toggleAuthMode()">>> Route_To_Identity_Creation</p>
+        </div>
+    </div>
+
+    <script>
+        // 🔑 [LIVE INCORPORATED CORE DIRECT VALID API MOUNT]
+        const YOUTUBE_API_KEY = "AIzaSyCMh4b6n9gqEpDAIYbp6MGtgGURWNSJEI8"; 
+
+        let currentMode = 'login';
+        let currentUserObj = null;
+        let activeChatFriendId = null;
+        let isAudioPlaying = false;
+
+        function initSystem() {
+            if (!localStorage.getItem("FSO_USERS_DB")) {
+                const initialDB = {
+                    "FSO-9999": { id: "FSO-9999", fullName: "HanThitNway", phone: "09892454482", pass: "amm258069", user: "HanThit", friends: ["FSO-4321"], requests: ["FSO-1111"] },
+                    "FSO-4321": { id: "FSO-4321", fullName: "Elliot Alderson", phone: "09998887776", pass: "fsociety", user: "mr_robot", friends: ["FSO-9999"], requests: [] },
+                    "FSO-1111": { id: "FSO-1111", fullName: "Darlene Alderson", phone: "09112233445", pass: "darkarmy", user: "darlene_hack", friends: [], requests: [] }
+                };
+                localStorage.setItem("FSO_USERS_DB", JSON.stringify(initialDB));
+            }
+            if (!localStorage.getItem("FSO_CHAT_LOGS")) {
+                localStorage.setItem("FSO_CHAT_LOGS", JSON.stringify({}));
+            }
+
+            if (!localStorage.getItem("FSO_ACTIVE_SESSION_UID")) {
+                localStorage.setItem("FSO_ACTIVE_SESSION_UID", "FSO-9999");
+            }
+
+            const autoLoginId = localStorage.getItem("FSO_ACTIVE_SESSION_UID");
+            if (autoLoginId) {
+                const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+                if (usersDB[autoLoginId]) {
+                    bindUserSessionUI(usersDB[autoLoginId]);
+                }
+            }
+            updateMasterAdminView();
+        }
+
+        /* 🔍 Core Tracker Target Probing Engine */
+        function executeTargetSearch() {
+            const queryId = document.getElementById('targetIdSearchInput').value.trim().toUpperCase();
+            const resultCard = document.getElementById('targetResultCard');
+            if(!queryId) return;
+
+            if(!currentUserObj) { alert("ERR_UNAUTHORIZED: Authenticated session required."); return; }
+            if(queryId === currentUserObj.id) { alert("ERR_SELF_LOOP: Cannot probe self loopback systems."); return; }
+
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+            const targetUser = usersDB[queryId];
+
+            if(targetUser) {
+                document.getElementById('targetResName').innerText = `<${targetUser.user}>`;
+                document.getElementById('targetResFullName').innerText = targetUser.fullName;
+                const addFriendBtn = document.getElementById('addFriendActionBtn');
+                
+                if(currentUserObj.friends.includes(queryId)) {
+                    addFriendBtn.innerText = "[✓] ALREADY_CONNECTED_PEER";
+                    addFriendBtn.disabled = true;
+                } else if(targetUser.requests.includes(currentUserObj.id)) {
+                    addFriendBtn.innerText = "[- ] REQUEST_PENDING_TRANSMISSION";
+                    addFriendBtn.disabled = true;
+                } else {
+                    addFriendBtn.innerText = "[+] ADD_FRIEND_NODE";
+                    addFriendBtn.disabled = false;
+                    addFriendBtn.onclick = function() { transmitFriendRequest(queryId); };
+                }
+                resultCard.style.display = "block";
+            } else {
+                alert("NODE_NOT_ENCOUNTERED: Target ID does not exist in localized matrix.");
+                resultCard.style.display = "none";
+            }
+        }
+
+        function transmitFriendRequest(targetId) {
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+            if(!usersDB[targetId].requests.includes(currentUserObj.id)) {
+                usersDB[targetId].requests.push(currentUserObj.id);
+                localStorage.setItem("FSO_USERS_DB", JSON.stringify(usersDB));
+                alert(`STASH_SUCCESS: Packet transmitted into node stack [${targetId}].`);
+                executeTargetSearch();
+            }
+        }
+
+        function acceptFriendRequest(senderId) {
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+            usersDB[currentUserObj.id].requests = usersDB[currentUserObj.id].requests.filter(id => id !== senderId);
+            if(!usersDB[currentUserObj.id].friends.includes(senderId)) usersDB[currentUserObj.id].friends.push(senderId);
+            if(!usersDB[senderId].friends.includes(currentUserObj.id)) usersDB[senderId].friends.push(currentUserObj.id);
+
+            localStorage.setItem("FSO_USERS_DB", JSON.stringify(usersDB));
+            currentUserObj = usersDB[currentUserObj.id];
+            renderFriendsList();
+            renderNotificationBell();
+            renderAdminIncomingRequestsUI();
+            updateMasterAdminView();
+        }
+
+        function renderNotificationBell() {
+            const bellWrapper = document.getElementById('bellWrapper');
+            if(!currentUserObj) { bellWrapper.innerHTML = ""; return; }
+            const reqCount = currentUserObj.requests.length;
+            if(reqCount > 0) {
+                bellWrapper.innerHTML = `<span class="bell-badge">[🔔 ${reqCount} REQ]</span>`;
+            } else {
+                bellWrapper.innerHTML = "";
+            }
+        }
+
+        function renderFriendsList() {
+            const container = document.getElementById('syncedFriendsDisplayPanel');
+            container.innerHTML = "";
+            if(!currentUserObj || currentUserObj.friends.length === 0) {
+                container.innerHTML = `<div style="font-size:11px; color:#444; text-align:center; padding-top:30px;">No synced companion peer nodes configured in stack buffer.</div>`;
+                return;
+            }
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+            currentUserObj.friends.forEach(fId => {
+                const fData = usersDB[fId];
+                if(fData) {
+                    const div = document.createElement('div');
+                    div.className = `friend-node-item ${activeChatFriendId === fId ? 'active-friend-node' : ''}`;
+                    div.setAttribute('onclick', `openSecureChatTunnel("${fId}")`);
+                    div.innerHTML = `<div><span style="color:#fff; font-weight:bold;">${fData.user}</span><br><span style="font-size:10px; color:#555;">ID: ${fId}</span></div><span style="color:#00ff66; font-size:10px;">[● ON]</span>`;
+                    container.appendChild(div);
+                }
+            });
+        }
+
+        function openSecureChatTunnel(friendId) {
+            activeChatFriendId = friendId;
+            renderFriendsList();
+            document.getElementById('secureDMChatWindow').style.display = "flex";
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+            document.getElementById('chatTargetHeaderLabel').innerText = `SECURE_TUNNEL_LOGS // TARGET: <${usersDB[friendId].user.toUpperCase()}>`;
+            loadChatHistoryLogs();
+        }
+
+        function closeChatTunnel() {
+            document.getElementById('secureDMChatWindow').style.display = "none";
+            activeChatFriendId = null;
+            renderFriendsList();
+        }
+
+        function loadChatHistoryLogs() {
+            const chatMessagesBox = document.getElementById('dmChatMessagesBox');
+            chatMessagesBox.innerHTML = "";
+            if(!activeChatFriendId) return;
+            const chatLogs = JSON.parse(localStorage.getItem("FSO_CHAT_LOGS"));
+            const channelId = [currentUserObj.id, activeChatFriendId].sort().join("_");
+            const dynamicLogsArray = chatLogs[channelId] || [];
+
+            dynamicLogsArray.forEach(msg => {
+                const div = document.createElement('div');
+                div.innerHTML = `<span style="color:#555;">[${msg.time}]</span> <span style="color:${msg.sender === currentUserObj.user ? '#00ff66':'#ff0055'}; font-weight:bold;">&lt;${msg.sender}&gt;:</span> <span style="color:#fff;">${msg.text}</span>`;
+                chatMessagesBox.appendChild(div);
+            });
+            chatMessagesBox.scrollTop = chatMessagesBox.scrollHeight;
+        }
+
+        function transmitMessagePacket() {
+            const input = document.getElementById('dmInputMessage');
+            const txt = input.value.trim();
+            if(!txt || !activeChatFriendId) return;
+            const chatLogs = JSON.parse(localStorage.getItem("FSO_CHAT_LOGS"));
+            const channelId = [currentUserObj.id, activeChatFriendId].sort().join("_");
+            if(!chatLogs[channelId]) chatLogs[channelId] = [];
+
+            const timestamp = new Date().toLocaleTimeString();
+            chatLogs[channelId].push({ time: timestamp, sender: currentUserObj.user, text: txt });
+            localStorage.setItem("FSO_CHAT_LOGS", JSON.stringify(chatLogs));
+            input.value = "";
+            loadChatHistoryLogs();
+        }
+
+        /* 🎵 🔴 LIVE YOUTUBE DATA API INJECTOR ENGINE 🔴 */
+        async function triggerYoutubeSearch() {
+            const query = document.getElementById('ytSearchQuery').value.trim();
+            const grid = document.getElementById('youtubeResultsGrid');
+            const statusMsg = document.getElementById('ytStatusMessage');
+            
+            grid.innerHTML = '';
+            if(!query) return;
+
+            statusMsg.innerText = "Executing live API search payload...";
+            statusMsg.style.display = "block";
+
+            try {
+                const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&q=${encodeURIComponent(query)}&type=video&key=${YOUTUBE_API_KEY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                statusMsg.style.display = "none";
+
+                if (data.error) {
+                    alert(`[!] API_ERROR: ${data.error.message}`);
+                    return;
+                }
+
+                if (!data.items || data.items.length === 0) {
+                    grid.innerHTML = '<div style="color:#ff0055; font-size:11px;">NO RAW MEDIA NODES RETURNED.</div>';
+                    return;
+                }
+
+                data.items.forEach(item => {
+                    const videoId = item.id.videoId;
+                    const title = item.snippet.title;
+                    const thumbUrl = item.snippet.thumbnails.medium.url;
+
+                    const card = document.createElement('div');
+                    card.className = 'video-item-card';
+                    card.setAttribute('onclick', `injectAudioStream("${videoId}")`);
+                    card.innerHTML = `
+                        <img class="video-thumb" src="${thumbUrl}" alt="thumbnail">
+                        <div class="video-title" title="${title}">${title}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+            } catch (error) {
+                statusMsg.style.display = "none";
+                alert(`[!] NETWORK_ERR: Unable to map stream pipeline. (${error.message})`);
+            }
+        }
+
+        function injectAudioStream(videoId) {
+            document.getElementById('videoIframeTarget').innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            document.getElementById('playerPlaceholderText').style.display = 'none';
+            isAudioPlaying = true;
+            triggerAudioHeaderTicker(true);
+        }
+
+        function triggerAudioHeaderTicker(active) {
+            const tag = document.getElementById('audioTickerTag');
+            const txt = document.getElementById('headlineTicker');
+            if(active) {
+                tag.innerText = "[STREAMING]"; tag.style.color = "#ff0055";
+                txt.innerText = "YOUR_AUDIO_IS_PLAYING // DETACHED BACKGROUND PIPE RUNNING SECURELY.";
+                txt.style.color = "#ff0055"; txt.style.fontWeight = "bold";
+            }
+        }
+
+        /* SPA Layout Switches Architecture */
+        function switchModule(moduleName) {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
+            document.querySelectorAll('.app-module').forEach(m => m.classList.remove('active-module'));
+            document.getElementById(`tab-${moduleName}`).classList.add('active-tab');
+            document.getElementById(`module-${moduleName}`).classList.add('active-module');
+            if(isAudioPlaying) triggerAudioHeaderTicker(true);
+            if(moduleName === 'account') { renderAdminIncomingRequestsUI(); }
+        }
+
+        function renderAdminIncomingRequestsUI() {
+            if(!currentUserObj) return;
+            const container = document.getElementById('accountBoxDetails');
+            let reqHtml = "";
+            if(currentUserObj.requests.length > 0) {
+                const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+                reqHtml = `<div style="margin-top:15px; border-top:1px dashed #ff0055; padding-top:10px;"><span style="color:#ffaa00; font-weight:bold; font-size:10px;">[INCOMING_PEER_CONNECTION_REQUESTS]</span>`;
+                currentUserObj.requests.forEach(rId => {
+                    if(usersDB[rId]) {
+                        reqHtml += `<div style="display:flex; justify-content:space-between; align-items:center; padding:5px; background:#111; margin-top:5px; font-size:11px; gap: 5px;"><span>ID: ${rId} (${usersDB[rId].user})</span><button onclick="acceptFriendRequest('${rId}')" style="background:#00ff66; border:none; font-size:9px; cursor:pointer; font-weight:bold; padding:2px 5px; white-space:nowrap;">[ACCEPT]</button></div>`;
+                    }
+                });
+                reqHtml += `</div>`;
+            }
+            container.innerHTML = `
+                <div class="info-row"><span style="color:#00ff66;">BOUND_NODE_ID:</span><span style="color:#ff0055; font-weight:bold;">${currentUserObj.id}</span></div>
+                <div class="info-row"><span>ACCOUNT_HANDLE (USER):</span><span>${currentUserObj.user}</span></div>
+                <div class="info-row"><span>REGISTERED_FULL_NAME:</span><span>${currentUserObj.fullName}</span></div>
+                <div class="info-row"><span>PHONE_BITS:</span><span>${currentUserObj.phone}</span></div>
+                ${reqHtml}
+            `;
+        }
+
+        function updateMasterAdminView() {
+            const tabAdmin = document.getElementById('tab-admin');
+            const tableBody = document.getElementById('masterAdminUserTableBody');
+            if(!tableBody) return;
+            tableBody.innerHTML = '';
+            
+            if (currentUserObj && currentUserObj.user === "HanThit") {
+                tabAdmin.style.display = "block";
+            } else {
+                tabAdmin.style.display = "none"; 
+                return;
+            }
+
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB")) || {};
+            for (const uid in usersDB) {
+                const u = usersDB[uid];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="font-weight:bold; color:#ffaa00;">${u.id}</td>
+                    <td style="color:#00ff66; font-weight:bold;">${u.user}</td>
+                    <td>${u.fullName}</td>
+                    <td>${u.phone}</td>
+                    <td style="color:#888;">${u.pass}</td>
+                    <td><button class="nuke-btn" onclick="nukeTargetUserNode('${u.id}')">[NUKE_ACCOUNT]</button></td>
+                `;
+                tableBody.appendChild(row);
+            }
+        }
+
+        function nukeTargetUserNode(targetId) {
+            if(targetId === "FSO-9999") { alert("ERR_CRITICAL_EXECUTION: Core System Architect Root Node cannot be detached."); return; }
+            if(confirm(`WARNING: Transmit full structural erasure payload on User Node [${targetId}]?`)) {
+                const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+                delete usersDB[targetId];
+                localStorage.setItem("FSO_USERS_DB", JSON.stringify(usersDB));
+                if(currentUserObj && currentUserObj.id === targetId) { executeKillSession(); }
+                else { initSystem(); alert(`STRIKE_SUCCESS: Node sequence [${targetId}] completely zeroed.`); }
+            }
+        }
+
+        /* Access Authentication Core Layer */
+        function openAuthModal(mode) { currentMode = mode; document.getElementById('authModal').style.display = 'flex'; updateModalUI(); }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        function toggleAuthMode() { currentMode = (currentMode === 'register') ? 'login' : 'register'; updateModalUI(); }
+        function updateModalUI() {
+            if(currentMode === 'register') {
+                document.getElementById('modalTitle').innerText = "# INITIALIZE_NEW_NODE_REGISTRATION";
+                document.getElementById('registerFields').style.display = "block";
+                document.getElementById('switchAuthText').innerText = ">> Route_To_Login_Session";
+            } else {
+                document.getElementById('modalTitle').innerText = "# REQUEST_SECURITY_CLEARANCE_LOGIN";
+                document.getElementById('registerFields').style.display = "none";
+                document.getElementById('switchAuthText').innerText = ">> Route_To_Identity_Creation";
+            }
+        }
+        function processAuth() {
+            const username = document.getElementById('authUsername').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            if(!username || !password) return;
+            const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
+
+            if(currentMode === 'register') {
+                const fullName = document.getElementById('regFullName').value.trim();
+                const phone = document.getElementById('regPhone').value.trim();
+                if(!fullName || !phone) return;
+
+                const generatedId = "FSO-" + Math.floor(1000 + Math.random() * 9000);
+                const userPayload = { id: generatedId, fullName: fullName, phone: phone, pass: password, user: username, friends: [], requests: [] };
+                usersDB[generatedId] = userPayload;
+                localStorage.setItem("FSO_USERS_DB", JSON.stringify(usersDB));
+                bindUserSessionUI(userPayload);
+            } else {
+                let foundUser = null;
+                for (const id in usersDB) {
+                    if(usersDB[id].user === username && usersDB[id].pass === password) { foundUser = usersDB[id]; break; }
+                }
+                if(foundUser) bindUserSessionUI(foundUser);
+                else alert("ACCESS_DENIED: Cryptographic token validation failed.");
+            }
+            closeAuthModal();
+        }
+        function bindUserSessionUI(userObj) {
+            currentUserObj = userObj;
+            localStorage.setItem("FSO_ACTIVE_SESSION_UID", userObj.id); 
+            document.getElementById('authStatusBar').innerHTML = `<span>[ROOT_AUTHORIZED] => <span class="hacker-username">${userObj.user} [ID: ${userObj.id}]</span></span> <span class="auth-link" onclick="executeKillSession()">[kill -9 session]</span>`;
+            renderFriendsList();
+            renderNotificationBell();
+            renderAdminIncomingRequestsUI();
+            updateMasterAdminView();
+        }
+        function executeKillSession() {
+            localStorage.removeItem("FSO_ACTIVE_SESSION_UID");
+            location.reload();
+        }
+    </script>
+</body>
+</html>
