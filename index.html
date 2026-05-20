@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>society_master_Os// hanthit_nway</title>
+    <title>Society_master_terminal // hanthit_nway</title>
     <style>
         /* 🕶️ Mr. Robot Deep Unix Terminal Core Theme */
         body {
@@ -25,17 +25,16 @@
         .subtitle { font-size: 10px; color: #888; margin-top: 5px; word-break: break-all; }
         
         .auth-status-bar { width: 95%; max-width: 1200px; margin: 10px 0; padding: 5px 0; font-size: 11px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; gap: 10px; }
-        .auth-status-bar > div { display: flex; flex-wrap: wrap; gap: 5px; }
+        .auth-status-bar > div { display: flex; flex-wrap: wrap; gap: 10px; }
         .hacker-username { color: #ff0055; font-weight: bold; text-shadow: 0 0 5px #ff0055; }
         .auth-link { color: #00ff66; cursor: pointer; text-decoration: underline; }
         
-        /* 🎛️ Cross-Platform Navigation Tab Layout */
+        /* 🎛️ Navigation Tab Layout */
         .cyber-navigation { display: flex; width: 95%; max-width: 1200px; margin: 10px 0; gap: 8px; align-items: center; flex-wrap: wrap; }
         .nav-tab { flex: 1; min-width: 130px; text-align: center; padding: 10px 8px; font-size: 11px; font-weight: bold; color: #00ff66; cursor: pointer; border: 1px solid #00ff66; background: transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         @media (max-width: 480px) { .nav-tab { min-width: 45%; font-size: 10px; padding: 8px 4px; } }
         .nav-tab.active-tab { color: #050505; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
         
-        /* Notification bell badge */
         .bell-badge { display: inline-block; background: #ff0055; color: #000; font-size: 9px; padding: 1px 4px; border-radius: 3px; font-weight: bold; margin-left: 3px; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
@@ -46,7 +45,7 @@
         .headline-tag { color: #ffaa00; font-size: 10px; font-weight: bold; display: block; }
         .headline-text { font-size: 12px; color: #ccc; word-break: break-word; }
 
-        /* 🔍 Responsive Fluid Grid Engine */
+        /* 🔍 Grid Engine */
         .tracker-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 15px; width: 100%; }
         @media(max-width: 768px) { .tracker-grid { grid-template-columns: 1fr; } }
         
@@ -56,17 +55,16 @@
         .tracker-btn { padding: 0 15px; background: #ff0055; color: #000; border: none; font-weight: bold; cursor: pointer; font-family: 'Courier New', monospace; font-size: 12px; white-space: nowrap; }
         .target-node-card { background: #111; border: 1px dashed #00ff66; padding: 12px; display: none; margin-bottom: 15px; }
 
-        /* Peer Node Layout links */
         .friend-node-item { padding: 10px; border: 1px solid #222; margin-bottom: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 12px; gap: 10px; }
         .friend-node-item:hover { border-color: #00ff66; background: rgba(0, 255, 102, 0.05); }
         .active-friend-node { border-color: #00ff66; background: rgba(0, 255, 102, 0.1); }
 
-        /* 💬 DM Embedded Chat Architecture */
+        /* 💬 DM Chat Architecture */
         .dm-chat-window { background: #000; border: 1px solid #00ff66; display: none; flex-direction: column; height: 300px; margin-top: 15px; width: 100%; }
         .chat-messages { flex: 1; padding: 12px; overflow-y: auto; font-size: 11px; display: flex; flex-direction: column; gap: 8px; background: #020202; }
         .chat-input-area { display: flex; border-top: 1px solid #00ff66; width: 100%; }
 
-        /* 🎵 Responsive YouTube Striker Styles Matrix */
+        /* 🎵 YouTube Matrix */
         .video-search-shell { display: flex; border: 1px solid #00ff66; background: #111; margin-bottom: 15px; width: 100%; }
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; width: 100%; }
         @media (max-width: 400px) { .video-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
@@ -75,7 +73,6 @@
         .video-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 1px solid #222; }
         .video-title { font-size: 10px; font-weight: bold; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 28px; line-height: 14px; }
         
-        /* Fluid Aspect-Ratio Responsive Video Player Box Container */
         .player-container { width: 100%; aspect-ratio: 16/9; max-height: 500px; background: #000; border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; position: relative; }
         .player-container iframe { width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; }
         
@@ -86,9 +83,8 @@
         .admin-table th, .admin-table td { padding: 10px; text-align: left; border: 1px solid #222; white-space: nowrap; }
         .admin-table th { background: rgba(255, 0, 85, 0.15); color: #ff0055; border-bottom: 2px solid #ff0055; }
         .nuke-btn { background: #ff0055; color: #000; border: none; font-size: 10px; padding: 4px 8px; cursor: pointer; font-family: 'Courier New', monospace; font-weight: bold; }
-        .nuke-btn:hover { background: #fff; color: #ff0055; }
 
-        /* Authentication Popups System Modal CSS */
+        /* Authentication Popups */
         .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.97); justify-content: center; align-items: center; z-index: 1000; padding: 10px; }
         .modal-content { background-color: #000; border: 1px solid #ff0055; padding: 20px; width: 100%; max-width: 380px; position: relative; }
         .modal-content input { width: 100%; padding: 10px; margin: 8px 0; background: #111; border: 1px solid #333; color: #00ff66; box-sizing: border-box; outline: none; font-family: 'Courier New', monospace; font-size: 12px; }
@@ -102,29 +98,29 @@
 <body onload="initSystem()">
 
     <header>
-        <h1>Society_core_os v9.0.0</h1>
-        <div class="subtitle">root@Hanthit_nway_Myanmar_Developer:~# _</div>
+        <h1>fsociety_core_os v10.0.0</h1>
+        <div class="subtitle">root@hanthit_nway_Myanmar_Developer:~# _</div>
     </header>
 
     <div class="auth-status-bar" id="authStatusBar">
-        <span>[STATUS] => SECURE_GUEST</span>
+        <span>[STATUS] => SECURE_ANONYMOUS_GUEST</span>
         <div>
-            <span class="auth-link" onclick="openAuthModal('register')">[+] register</span>
-            <span class="auth-link" onclick="openAuthModal('login')">[//] login</span>
+            <span class="auth-link" onclick="openAuthModal('register')">[+] register_</span>
+            <span class="auth-link" onclick="openAuthModal('login')">[//] login_</span>
         </div>
     </div>
 
     <div class="cyber-navigation">
-        <div class="nav-tab active-tab" id="tab-tracker" onclick="switchModule('tracker')">/Home_</div>
-        <div class="nav-tab" id="tab-audio" onclick="switchModule('audio')">/youtube_</div>
-        <div class="nav-tab" id="tab-account" onclick="switchModule('account')">./view_users <span id="bellWrapper"></span></div>
-        <div class="nav-tab" id="tab-admin" onclick="switchModule('admin')" style="display:none; border-color:#ff0055; color:#ff0055;"> MASTER_ROOT_ADMIN_PANEL</div>
+        <div class="nav-tab active-tab" id="tab-tracker" onclick="switchModule('tracker')">/Home</div>
+        <div class="nav-tab" id="tab-audio" onclick="switchModule('audio')"> /youtube_</div>
+        <div class="nav-tab" id="tab-account" onclick="switchModule('account')"> ./view_users <span id="bellWrapper"></span></div>
+        <div class="nav-tab" id="tab-admin" onclick="switchModule('admin')" style="display:none; border-color:#ff0055; color:#ff0055;">👑 MASTER_ROOT_ADMIN_PANEL</div>
     </div>
 
     <div class="app-module active-module" id="module-tracker">
         <div class="news-headline-panel">
             <span class="headline-tag" id="audioTickerTag">[!] SYSTEM_ALERTS_LOG // PERSISTENT</span>
-            <span class="headline-text" id="headlineTicker">System fully operational. Cache states initialized from stable disk storage buffer.</span>
+            <span class="headline-text" id="headlineTicker">System fully operational. Please register or login to establish node peering tunnels.</span>
         </div>
 
         <div class="tracker-grid">
@@ -154,7 +150,7 @@
                     </div>
                     <div class="chat-messages" id="dmChatMessagesBox"></div>
                     <div class="chat-input-area">
-                        <span style="padding:10px; color:#00ff66; font-weight:bold; font-size:11px;">./:~$</span>
+                        <span style="padding:10px; color:#00ff66; font-weight:bold; font-size:11px;">payload:~$</span>
                         <input type="text" id="dmInputMessage" class="tracker-input" placeholder="Transmit crypt packets..." onkeypress="if(event.key === 'Enter') transmitMessagePacket()">
                         <button class="tracker-btn" onclick="transmitMessagePacket()">XMIT</button>
                     </div>
@@ -172,7 +168,7 @@
     </div>
 
     <div class="app-module" id="module-audio">
-        <div class="section-title">> ENTER YOUTUBE SEARCH </div>
+        <div class="section-title">> ENTER YOUTUBE SEARCH QUERY (LIVE API CONNECTOR)</div>
         <br>
         <div class="video-search-shell">
             <span style="padding:10px; color:#00ff66; font-weight:bold; font-size:12px;">yt@search:~$</span>
@@ -180,7 +176,7 @@
             <button class="tracker-btn" style="background:#00ff66; color:#000;" onclick="triggerYoutubeSearch()">SEARCH</button>
         </div>
         
-        <div id="ytStatusMessage" style="font-size:11px; color:#ffaa00; margin-bottom:15px; display:none;">Executing search ...</div>
+        <div id="ytStatusMessage" style="font-size:11px; color:#ffaa00; margin-bottom:15px; display:none;">Executing search payload...</div>
         
         <div class="video-grid" id="youtubeResultsGrid"></div>
         <div class="section-title">> LIVE_DETACHED_PLAYER_MATRIX</div>
@@ -248,6 +244,7 @@
         let isAudioPlaying = false;
 
         function initSystem() {
+            // Initialize Core Users DB in local matrix
             if (!localStorage.getItem("FSO_USERS_DB")) {
                 const initialDB = {
                     "FSO-9999": { id: "FSO-9999", fullName: "HanThitNway", phone: "09892454482", pass: "amm258069", user: "HanThit", friends: ["FSO-4321"], requests: ["FSO-1111"] },
@@ -260,27 +257,36 @@
                 localStorage.setItem("FSO_CHAT_LOGS", JSON.stringify({}));
             }
 
-            if (!localStorage.getItem("FSO_ACTIVE_SESSION_UID")) {
-                localStorage.setItem("FSO_ACTIVE_SESSION_UID", "FSO-9999");
-            }
-
-            const autoLoginId = localStorage.getItem("FSO_ACTIVE_SESSION_UID");
-            if (autoLoginId) {
+            // 🛑 [FIXED] REMOVED FORCE AUTO-LOGIN TO FSO-9999
+            // စက်အသစ် သို့မဟုတ် ဖုန်းအသစ်ကနေ Link ပွင့်လာရင် Guest အဖြစ်ပဲ စဝင်ပါမယ်။
+            const activeSessionId = localStorage.getItem("FSO_ACTIVE_SESSION_UID");
+            if (activeSessionId) {
                 const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
-                if (usersDB[autoLoginId]) {
-                    bindUserSessionUI(usersDB[autoLoginId]);
+                if (usersDB[activeSessionId]) {
+                    bindUserSessionUI(usersDB[activeSessionId]);
+                } else {
+                    renderGuestUI();
                 }
+            } else {
+                renderGuestUI();
             }
-            updateMasterAdminView();
+        }
+
+        function renderGuestUI() {
+            currentUserObj = null;
+            document.getElementById('authStatusBar').innerHTML = `<span>[STATUS] => SECURE_ANONYMOUS_GUEST</span><div><span class="auth-link" onclick="openAuthModal('register')">[+] register_node</span> <span class="auth-link" onclick="openAuthModal('login')">[//] login_session</span></div>`;
+            document.getElementById('tab-admin').style.display = "none";
+            document.getElementById('syncedFriendsDisplayPanel').innerHTML = `<div style="font-size:11px; color:#444; text-align:center; padding-top:30px;">Please login to view peer nodes.</div>`;
+            document.getElementById('accountBoxDetails').innerHTML = `<p style="color:#ff0055; font-size:11px; margin:0;">[CRITICAL_WARN] ANONYMOUS_SESSION_NOT_BOUND. PLEASE LOG IN.</p>`;
         }
 
         /* 🔍 Core Tracker Target Probing Engine */
         function executeTargetSearch() {
+            if(!currentUserObj) { alert("ERR_UNAUTHORIZED: Authenticated session required."); return; }
             const queryId = document.getElementById('targetIdSearchInput').value.trim().toUpperCase();
             const resultCard = document.getElementById('targetResultCard');
             if(!queryId) return;
 
-            if(!currentUserObj) { alert("ERR_UNAUTHORIZED: Authenticated session required."); return; }
             if(queryId === currentUserObj.id) { alert("ERR_SELF_LOOP: Cannot probe self loopback systems."); return; }
 
             const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
@@ -410,7 +416,7 @@
             loadChatHistoryLogs();
         }
 
-        /* 🎵 🔴 LIVE YOUTUBE DATA API INJECTOR ENGINE 🔴 */
+        /* 🎵 LIVE YOUTUBE ENGINE */
         async function triggerYoutubeSearch() {
             const query = document.getElementById('ytSearchQuery').value.trim();
             const grid = document.getElementById('youtubeResultsGrid');
@@ -477,7 +483,7 @@
             }
         }
 
-        /* SPA Layout Switches Architecture */
+        /* SPA Layout Switches */
         function switchModule(moduleName) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active-tab'));
             document.querySelectorAll('.app-module').forEach(m => m.classList.remove('active-module'));
@@ -488,8 +494,11 @@
         }
 
         function renderAdminIncomingRequestsUI() {
-            if(!currentUserObj) return;
             const container = document.getElementById('accountBoxDetails');
+            if(!currentUserObj) {
+                container.innerHTML = `<p style="color:#ff0055; font-size:11px; margin:0;">[CRITICAL_WARN] ANONYMOUS_SESSION_NOT_BOUND. PLEASE LOG IN.</p>`;
+                return;
+            }
             let reqHtml = "";
             if(currentUserObj.requests.length > 0) {
                 const usersDB = JSON.parse(localStorage.getItem("FSO_USERS_DB"));
@@ -595,6 +604,7 @@
             currentUserObj = userObj;
             localStorage.setItem("FSO_ACTIVE_SESSION_UID", userObj.id); 
             document.getElementById('authStatusBar').innerHTML = `<span>[ROOT_AUTHORIZED] => <span class="hacker-username">${userObj.user} [ID: ${userObj.id}]</span></span> <span class="auth-link" onclick="executeKillSession()">[kill -9 session]</span>`;
+            document.getElementById('headlineTicker').innerText = "System fully operational. Session active and fully bound to network suite.";
             renderFriendsList();
             renderNotificationBell();
             renderAdminIncomingRequestsUI();
